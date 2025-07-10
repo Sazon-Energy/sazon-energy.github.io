@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your website description here">
+    <meta name="keywords" content="your, keywords, here">
+    <meta name="author" content="Your Name">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourusername.github.io/">
+    <meta property="og:title" content="Your Website Title">
+    <meta property="og:description" content="Your website description here">
+    <meta property="og:image" content="https://yourusername.github.io/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yourusername.github.io/">
+    <meta property="twitter:title" content="Your Website Title">
+    <meta property="twitter:description" content="Your website description here">
+    <meta property="twitter:image" content="https://yourusername.github.io/og-image.jpg">
+    
+    <title>Your Website Title</title>
+    
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #ff9933;
+            --primary-dark: #e55a00;
+            --secondary-color: #1e293b;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --bg-color: #ffffff;
+            --bg-secondary: #f8fafc;
+            --border-color: #e5e7eb;
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --gradient: linear-gradient(135deg, #ff9933 0%, #8b2500 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            overflow-x: hidden;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff08" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 2rem;
+            z-index: 1;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.9s forwards;
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--secondary-color);
+        }
+
+        .learnMore {
+            background: var(--bg-secondary);
+        }
+
+        .learnMore-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .learnMore-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        .learnMore-image {
+            width: 100%;
+            height: 400px;
+            background: var(--gradient);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .learnMore-image::before {
+            content: 'Your Image Here';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .learnMore-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">Your Brand</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#learnMore">Learn More</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Welcome to Your Website</h1>
+                <p>Create something amazing with modern web design and cutting-edge technology</p>
+                <a href="#learnMore" class="cta-button">Get Started</a>
+            </div>
+        </section>
+
+        <section id="learnMore" class="learnMore">
+            <div class="section">
+                <h2 class="section-title fade-in">Learn More</h2>
+                <div class="learnMore-content">
+                    <div class="learnMore-text fade-in">
+                        <p>We are passionate about creating exceptional digital experiences that make a difference. Our team combines creativity with technical expertise to deliver solutions that exceed expectations.</p>
+                        <p>With years of experience in web development, design, and digital strategy, we help businesses and individuals establish a strong online presence.</p>
+                        <p></p>
+                    </div>
+                    <div class="learnMore-image fade-in"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section">
+            <h2 class="section-title fade-in">Our Services</h2>
+            <div class="features">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Web Design</h3>
+                    <p>Beautiful, responsive designs that captivate your audience and provide exceptional user experiences across all devices.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Development</h3>
+                    <p>Fast, secure, and scalable web applications built with modern technologies and best practices.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Optimization</h3>
+                    <p>Performance optimization and SEO strategies to ensure your website ranks well and loads lightning fast.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#" aria-label="GitHub">📧</a>
+                <a href="#" aria-label="LinkedIn">💼</a>
+                <a href="#" aria-label="Instagram">🐦</a>
+            </div>
+            <p>&copy; 2025 Your Website. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Content Configuration - Edit this JSON object to change all text content
+        const siteContent = {
+            "meta": {
+                "title": "Sazon Energy",
+                "description": "Sazon Energy is on a mission to support the transition of Puerto Rico to the electrification of everything powered by emissions-free energy sources.",
+                "keywords": "puerto rico, renewable energy, batteries, solar",
+                "author": "Sazon Energy",
+                "ogTitle": "Sazon Energy",
+                "ogDescription": "Sazon Energy is on a mission to support the transition of Puerto Rico to the electrification of everything powered by emissions-free energy sources.",
+                "ogUrl": "https://sazon-energy.github.io/",
+                "ogImage": "https://sazon-energy.github.io/og-image.jpg"
+            },
+            "navigation": {
+                "logo": "Sazon Energy",
+                "links": [
+                    { "text": "Home", "href": "#home" },
+                    { "text": "Learn More", "href": "#learnMore" },
+                    { "text": "Services", "href": "#services" },
+                    { "text": "Contact", "href": "#contact" }
+                ]
+            },
+            "hero": {
+                "title": "The future of energy in Puerto Rico is renewable.",
+                "subtitle": "Batteries can provide backup power when the grid goes down, and provide valuable services the grid in times of stress to prevent those interruptions from happening.",
+                "ctaText": "Learn More",
+                "ctaLink": "#learnMore"
+            },
+            "learnMore": {
+                "title": "How will it work?",
+                "paragraphs": [
+                    "You will connect a home battery to a critical load, like a refrigerator, freezer, internet services, or window air conditioner. (Life-maintaining appliances are not suitable).",
+                    "The battery stays charged from the wall, so it can back up your appliance if the power goes out. When the grid is stressed, the battery will power your appliance, even if the grid is working, to help avoid a power outage.",
+                    "Your electricity bill will go up slightly to keep the battery charged and ready for blackouts, and you will be paid every month for the energy used by the battery to avoid blackouts."
+                ],
+                "imagePlaceholder": "Your Image Here"
+            },
+            "services": {
+                "title": "Our Services",
+                "features": [
+                    {
+                        "icon": "💸",
+                        "title": "Home efficiency analysis",
+                        "description": "The best way to lower energy costs is to use less of it. Let us review your home and make efficiency recommendations."
+                    },
+                    {
+                        "icon": "🔋",
+                        "title": "Backup power as a service",
+                        "description": "Choose the appliances you want to backup and we'll suggest the battery capacity that can back it up for 24 hours."
+                    },
+                    {
+                        "icon": "📉",
+                        "title": "Monitoring",
+                        "description": "We'll monitor your battery health and make sure it's working for you."
+                    }
+                ]
+            },
+            "footer": {
+                "socialLinks": [
+                    { "icon": "📧", "href": "#", "label": "Email" },
+                    { "icon": "💼", "href": "#", "label": "LinkedIn" },
+                    { "icon": "🤳🏽", "href": "https://www.instagram.com/sazonenergia/", "label": "Instagram" }
+                ],
+                "copyright": "© 2025 Sazon Energy. All rights reserved."
+            }
+        };
+
+        // Function to populate content from JSON
+        function populateContent() {
+            // Update meta tags
+            document.title = siteContent.meta.title;
+            document.querySelector('meta[name="description"]').setAttribute('content', siteContent.meta.description);
+            document.querySelector('meta[name="keywords"]').setAttribute('content', siteContent.meta.keywords);
+            document.querySelector('meta[name="author"]').setAttribute('content', siteContent.meta.author);
+            
+            // Update Open Graph tags
+            document.querySelector('meta[property="og:title"]').setAttribute('content', siteContent.meta.ogTitle);
+            document.querySelector('meta[property="og:description"]').setAttribute('content', siteContent.meta.ogDescription);
+            document.querySelector('meta[property="og:url"]').setAttribute('content', siteContent.meta.ogUrl);
+            document.querySelector('meta[property="og:image"]').setAttribute('content', siteContent.meta.ogImage);
+            
+            // Update Twitter tags
+            document.querySelector('meta[property="twitter:title"]').setAttribute('content', siteContent.meta.ogTitle);
+            document.querySelector('meta[property="twitter:description"]').setAttribute('content', siteContent.meta.ogDescription);
+            document.querySelector('meta[property="twitter:url"]').setAttribute('content', siteContent.meta.ogUrl);
+            document.querySelector('meta[property="twitter:image"]').setAttribute('content', siteContent.meta.ogImage);
+
+            // Update navigation
+            document.querySelector('.logo').textContent = siteContent.navigation.logo;
+            const navLinks = document.querySelectorAll('.nav-links a');
+            siteContent.navigation.links.forEach((link, index) => {
+                if (navLinks[index]) {
+                    navLinks[index].textContent = link.text;
+                    navLinks[index].setAttribute('href', link.href);
+                }
+            });
+
+            // Update hero section
+            document.querySelector('.hero h1').textContent = siteContent.hero.title;
+            document.querySelector('.hero p').textContent = siteContent.hero.subtitle;
+            document.querySelector('.cta-button').textContent = siteContent.hero.ctaText;
+            document.querySelector('.cta-button').setAttribute('href', siteContent.hero.ctaLink);
+
+            // Update about section
+            document.querySelector('#learnMore .section-title').textContent = siteContent.learnMore.title;
+            const learnMoreParagraphs = document.querySelectorAll('.learnMore-text p');
+            siteContent.learnMore.paragraphs.forEach((paragraph, index) => {
+                if (learnMoreParagraphs[index]) {
+                    learnMoreParagraphs[index].textContent = paragraph;
+                }
+            });
+            document.querySelector('.learnMore-image::before') && 
+                document.querySelector('.learnMore-image').setAttribute('data-text', siteContent.learnMore.imagePlaceholder);
+
+            // Update services section
+            document.querySelector('#services .section-title').textContent = siteContent.services.title;
+            const featureCards = document.querySelectorAll('.feature-card');
+            siteContent.services.features.forEach((feature, index) => {
+                if (featureCards[index]) {
+                    featureCards[index].querySelector('.feature-icon').textContent = feature.icon;
+                    featureCards[index].querySelector('h3').textContent = feature.title;
+                    featureCards[index].querySelector('p').textContent = feature.description;
+                }
+            });
+
+            // Update footer
+            const socialLinks = document.querySelectorAll('.social-links a');
+            siteContent.footer.socialLinks.forEach((link, index) => {
+                if (socialLinks[index]) {
+                    socialLinks[index].textContent = link.icon;
+                    socialLinks[index].setAttribute('href', link.href);
+                    socialLinks[index].setAttribute('aria-label', link.label);
+                }
+            });
+            document.querySelector('footer p').textContent = siteContent.footer.copyright;
+        }
+
+        // Populate content when page loads
+        document.addEventListener('DOMContentLoaded', populateContent);
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
