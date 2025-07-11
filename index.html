@@ -40,6 +40,8 @@
             --border-color: #e5e7eb;
             --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             --gradient: linear-gradient(135deg, #ff9933 0%, #8b2500 100%);
+            --available-color: #10b981;
+            --coming-soon-color: #f59e0b;
         }
 
         * {
@@ -279,6 +281,7 @@
             box-shadow: var(--shadow);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid var(--border-color);
+            position: relative;
         }
 
         .feature-card:hover {
@@ -286,17 +289,73 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
 
+        .feature-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
         .feature-icon {
             width: 60px;
             height: 60px;
             background: var(--gradient);
             border-radius: 15px;
-            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
             color: white;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .status-badge.available {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--available-color);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .status-badge.coming-soon {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--coming-soon-color);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        .status-icon {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .status-badge.available .status-icon {
+            background: var(--available-color);
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+        }
+
+        .status-badge.coming-soon .status-icon {
+            background: var(--coming-soon-color);
+            box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 0 6px rgba(245, 158, 11, 0.1);
+            }
         }
 
         .feature-card h3 {
@@ -368,6 +427,12 @@
             .section {
                 padding: 3rem 1rem;
             }
+
+            .feature-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
         }
 
         /* Scroll animations */
@@ -423,17 +488,35 @@
             <h2 class="section-title fade-in">Services</h2>
             <div class="features">
                 <div class="feature-card fade-in">
-                    <div class="feature-icon">🎨</div>
+                    <div class="feature-header">
+                        <div class="feature-icon">🎨</div>
+                        <div class="status-badge available">
+                            <div class="status-icon"></div>
+                            Available Now
+                        </div>
+                    </div>
                     <h3>Services Div1 H3</h3>
                     <p>Services Div1 P</p>
                 </div>
                 <div class="feature-card fade-in">
-                    <div class="feature-icon">⚡</div>
+                    <div class="feature-header">
+                        <div class="feature-icon">⚡</div>
+                        <div class="status-badge coming-soon">
+                            <div class="status-icon"></div>
+                            Coming Soon
+                        </div>
+                    </div>
                     <h3>Servcices Div2 H3</h3>
                     <p>Services Div2 P</p>
                 </div>
                 <div class="feature-card fade-in">
-                    <div class="feature-icon">🚀</div>
+                    <div class="feature-header">
+                        <div class="feature-icon">🚀</div>
+                        <div class="status-badge coming-soon">
+                            <div class="status-icon"></div>
+                            Coming Soon
+                        </div>
+                    </div>
                     <h3>Services Div3 H3</h3>
                     <p>Services Div3 P</p>
                 </div>
@@ -497,17 +580,20 @@
                     {
                         "icon": "💸",
                         "title": "Home efficiency analysis",
-                        "description": "The best way to lower energy costs is to use less of it. Let us review your home and make efficiency recommendations."
+                        "description": "The best way to lower energy costs is to use less of it. Let us review your home and make efficiency recommendations.",
+                        "status": "available"
                     },
                     {
                         "icon": "🔋",
                         "title": "Backup power as a service",
-                        "description": "Choose the appliances you want to backup and we'll suggest the battery capacity that can back it up for 24 hours."
+                        "description": "Choose the appliances you want to backup and we'll suggest the battery capacity that can back it up for 24 hours.",
+                        "status": "coming-soon"
                     },
                     {
                         "icon": "📉",
                         "title": "Monitoring",
-                        "description": "We'll monitor your battery's health and the elecriticy consumption of the connected appliance, and make sure it's working for you."
+                        "description": "We'll monitor your battery's health and the elecriticy consumption of the connected appliance, and make sure it's working for you.",
+                        "status": "coming-soon"
                     }
                 ]
             },
@@ -577,6 +663,16 @@
                     featureCards[index].querySelector('.feature-icon').innerHTML = feature.icon;
                     featureCards[index].querySelector('h3').innerHTML = feature.title;
                     featureCards[index].querySelector('p').innerHTML = feature.description;
+                    
+                    // Update status badge based on feature status
+                    const statusBadge = featureCards[index].querySelector('.status-badge');
+                    if (feature.status === 'available') {
+                        statusBadge.className = 'status-badge available';
+                        statusBadge.innerHTML = '<div class="status-icon"></div>Available Now';
+                    } else {
+                        statusBadge.className = 'status-badge coming-soon';
+                        statusBadge.innerHTML = '<div class="status-icon"></div>Coming Soon';
+                    }
                 }
             });
 
