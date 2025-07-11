@@ -386,7 +386,7 @@
 <body>
     <header>
         <nav>
-            <a href="#" class="logo">Your Brand</a>
+            <a href="#" class="logo">Logo</a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#learnMore">Learn More</a></li>
@@ -399,20 +399,20 @@
     <main>
         <section id="home" class="hero">
             <div class="hero-content">
-                <h1>Welcome to Your Website</h1>
-                <p>Create something amazing with modern web design and cutting-edge technology</p>
-                <a href="#learnMore" class="cta-button">Get Started</a>
+                <h1>Home H1</h1>
+                <p>Home P</p>
+                <a href="#learnMore" class="cta-button">Home Link</a>
             </div>
         </section>
 
         <section id="learnMore" class="learnMore">
             <div class="section">
-                <h2 class="section-title fade-in">Learn More</h2>
+                <h2 class="section-title fade-in">Learn More H2</h2>
                 <div class="learnMore-content">
                     <div class="learnMore-text fade-in">
-                        <p>We are passionate about creating exceptional digital experiences that make a difference. Our team combines creativity with technical expertise to deliver solutions that exceed expectations.</p>
-                        <p>With years of experience in web development, design, and digital strategy, we help businesses and individuals establish a strong online presence.</p>
-                        <p></p>
+                        <p>Learn More Content P1</p>
+                        <p>Learn More Content P2.</p>
+                        <p>Learn More Content P3</p>
                     </div>
                     <div class="learnMore-image fade-in"></div>
                 </div>
@@ -420,24 +420,25 @@
         </section>
 
         <section id="services" class="section">
-            <h2 class="section-title fade-in">Our Services</h2>
+            <h2 class="section-title fade-in">Services</h2>
             <div class="features">
                 <div class="feature-card fade-in">
                     <div class="feature-icon">🎨</div>
-                    <h3>Web Design</h3>
-                    <p>Beautiful, responsive designs that captivate your audience and provide exceptional user experiences across all devices.</p>
+                    <h3>Services Div1 H3</h3>
+                    <p>Services Div1 P</p>
                 </div>
                 <div class="feature-card fade-in">
                     <div class="feature-icon">⚡</div>
-                    <h3>Development</h3>
-                    <p>Fast, secure, and scalable web applications built with modern technologies and best practices.</p>
+                    <h3>Servcices Div2 H3</h3>
+                    <p>Services Div2 P</p>
                 </div>
                 <div class="feature-card fade-in">
                     <div class="feature-icon">🚀</div>
-                    <h3>Optimization</h3>
-                    <p>Performance optimization and SEO strategies to ensure your website ranks well and loads lightning fast.</p>
+                    <h3>Services Div3 H3</h3>
+                    <p>Services Div3 P</p>
                 </div>
             </div>
+        </section>
         </section>
     </main>
 
@@ -457,11 +458,11 @@
         const siteContent = {
             "meta": {
                 "title": "Sazon Energy",
-                "description": "Sazon Energy is on a mission to support the transition of Puerto Rico to the electrification of everything powered by emissions-free energy sources.",
+                "description": "Sazon Energy is on a mission to support the modern energy transition in the home — the electrification of everything powered by emissions-free energy sources.",
                 "keywords": "puerto rico, renewable energy, batteries, solar",
                 "author": "Sazon Energy",
                 "ogTitle": "Sazon Energy",
-                "ogDescription": "Sazon Energy is on a mission to support the transition of Puerto Rico to the electrification of everything powered by emissions-free energy sources.",
+                "ogDescription": "Sazon Energy is on a mission to support the modern energy transition in the home — the electrification of everything powered by emissions-free energy sources.",
                 "ogUrl": "https://sazon-energy.github.io/",
                 "ogImage": "https://sazon-energy.github.io/og-image.jpg"
             },
@@ -475,17 +476,18 @@
                 ]
             },
             "hero": {
-                "title": "The future of energy in Puerto Rico is renewable.",
-                "subtitle": "Batteries can provide backup power when the grid goes down, and provide valuable services the grid in times of stress to prevent those interruptions from happening.",
+                "title": "The future of energy is <em>spicy</em>.",
+                "subtitle": "Batteries, solar panels, smart appliances, and utility programs can help families save money and be resilient in the face of increasing costs and disruptions.",
+                "subtitle-old": "Batteries can provide backup power when the grid goes down, and provide valuable services the grid in times of stress to prevent those interruptions from happening.",
                 "ctaText": "Learn More",
                 "ctaLink": "#learnMore"
             },
             "learnMore": {
                 "title": "How will it work?",
                 "paragraphs": [
-                    "You will connect a home battery to a critical load, like a refrigerator, freezer, internet services, or window air conditioner. (Life-maintaining appliances are not suitable).",
-                    "The battery stays charged from the wall, so it can back up your appliance if the power goes out. When the grid is stressed, the battery will power your appliance, even if the grid is working, to help avoid a power outage.",
-                    "Your electricity bill will go up slightly to keep the battery charged and ready for blackouts, and you will be paid every month for the energy used by the battery to avoid blackouts."
+                    "<ul><li>We'll evaluate your current energy consumption, then make recommendations for improvements you can make to use energy more efficiently.</li></ul>",
+                    "<ul><li>Backup the important things - select important appliances, like refrigerators, freezers, internet services, or window air conditioner. (Life-maintaining appliances are not suitable).</li></ul>",
+                    "<ul><li>The battery will automatically backup the appliance in case of an outage and help the grid during times of stress - helping to pay for itself.</li></ul>"
                 ],
                 "imagePlaceholder": "Your Image Here"
             },
@@ -505,7 +507,7 @@
                     {
                         "icon": "📉",
                         "title": "Monitoring",
-                        "description": "We'll monitor your battery health and make sure it's working for you."
+                        "description": "We'll monitor your battery's health and the elecriticy consumption of the connected appliance, and make sure it's working for you."
                     }
                 ]
             },
@@ -520,6 +522,7 @@
         };
 
         // Function to populate content from JSON
+        // using innerHTML instead of textcontent because this is all safe, from this page itself.
         function populateContent() {
             // Update meta tags
             document.title = siteContent.meta.title;
@@ -540,40 +543,40 @@
             document.querySelector('meta[property="twitter:image"]').setAttribute('content', siteContent.meta.ogImage);
 
             // Update navigation
-            document.querySelector('.logo').textContent = siteContent.navigation.logo;
+            document.querySelector('.logo').innerHTML = siteContent.navigation.logo;
             const navLinks = document.querySelectorAll('.nav-links a');
             siteContent.navigation.links.forEach((link, index) => {
                 if (navLinks[index]) {
-                    navLinks[index].textContent = link.text;
+                    navLinks[index].innerHTML = link.text;
                     navLinks[index].setAttribute('href', link.href);
                 }
             });
 
             // Update hero section
-            document.querySelector('.hero h1').textContent = siteContent.hero.title;
-            document.querySelector('.hero p').textContent = siteContent.hero.subtitle;
-            document.querySelector('.cta-button').textContent = siteContent.hero.ctaText;
+            document.querySelector('.hero h1').innerHTML = siteContent.hero.title;
+            document.querySelector('.hero p').innerHTML = siteContent.hero.subtitle;
+            document.querySelector('.cta-button').innerHTML = siteContent.hero.ctaText;
             document.querySelector('.cta-button').setAttribute('href', siteContent.hero.ctaLink);
 
             // Update about section
-            document.querySelector('#learnMore .section-title').textContent = siteContent.learnMore.title;
+            document.querySelector('#learnMore .section-title').innerHTML = siteContent.learnMore.title;
             const learnMoreParagraphs = document.querySelectorAll('.learnMore-text p');
             siteContent.learnMore.paragraphs.forEach((paragraph, index) => {
                 if (learnMoreParagraphs[index]) {
-                    learnMoreParagraphs[index].textContent = paragraph;
+                    learnMoreParagraphs[index].innerHTML = paragraph;
                 }
             });
             document.querySelector('.learnMore-image::before') && 
                 document.querySelector('.learnMore-image').setAttribute('data-text', siteContent.learnMore.imagePlaceholder);
 
             // Update services section
-            document.querySelector('#services .section-title').textContent = siteContent.services.title;
+            document.querySelector('#services .section-title').innerHTML = siteContent.services.title;
             const featureCards = document.querySelectorAll('.feature-card');
             siteContent.services.features.forEach((feature, index) => {
                 if (featureCards[index]) {
-                    featureCards[index].querySelector('.feature-icon').textContent = feature.icon;
-                    featureCards[index].querySelector('h3').textContent = feature.title;
-                    featureCards[index].querySelector('p').textContent = feature.description;
+                    featureCards[index].querySelector('.feature-icon').innerHTML = feature.icon;
+                    featureCards[index].querySelector('h3').innerHTML = feature.title;
+                    featureCards[index].querySelector('p').innerHTML = feature.description;
                 }
             });
 
@@ -581,12 +584,12 @@
             const socialLinks = document.querySelectorAll('.social-links a');
             siteContent.footer.socialLinks.forEach((link, index) => {
                 if (socialLinks[index]) {
-                    socialLinks[index].textContent = link.icon;
+                    socialLinks[index].innerHTML = link.icon;
                     socialLinks[index].setAttribute('href', link.href);
                     socialLinks[index].setAttribute('aria-label', link.label);
                 }
             });
-            document.querySelector('footer p').textContent = siteContent.footer.copyright;
+            document.querySelector('footer p').innerHTML = siteContent.footer.copyright;
         }
 
         // Populate content when page loads
