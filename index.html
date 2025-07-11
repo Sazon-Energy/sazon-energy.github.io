@@ -256,7 +256,7 @@
         }
 
         .learnMore-image::before {
-            content: 'Your Image Here';
+            content: '';
             position: absolute;
             top: 50%;
             left: 50%;
@@ -264,6 +264,14 @@
             color: white;
             font-size: 1.2rem;
             font-weight: 600;
+        }
+
+        .learnMore-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            border-radius: 20px;
         }
 
         /* Features Grid */
@@ -479,7 +487,7 @@
                         <p>Learn More Content P2.</p>
                         <p>Learn More Content P3</p>
                     </div>
-                    <div class="learnMore-image fade-in"></div>
+                    <div class="learnMore-image fade-in"><img src="sazonenergia-logo.png"></div>
                 </div>
             </div>
         </section>
@@ -572,7 +580,7 @@
                     "<ul><li>Backup the important things - select important appliances, like refrigerators, freezers, internet services, or window air conditioner. (Life-maintaining appliances are not suitable).</li></ul>",
                     "<ul><li>The battery will automatically backup the appliance in case of an outage and help the grid during times of stress - helping to pay for itself.</li></ul>"
                 ],
-                "imagePlaceholder": "Your Image Here"
+                "imagePlaceholder": "",
             },
             "services": {
                 "title": "Our Services",
