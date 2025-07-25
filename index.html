@@ -256,7 +256,7 @@
         }
 
         .learnMore-image::before {
-            content: '';
+            content: 'Your Image Here';
             position: absolute;
             top: 50%;
             left: 50%;
@@ -487,7 +487,7 @@
                         <p>Learn More Content P2.</p>
                         <p>Learn More Content P3</p>
                     </div>
-                    <div class="learnMore-image fade-in"><img src="sazonenergia-logo.png"></div>
+                    <div class="learnMore-image fade-in"></div>
                 </div>
             </div>
         </section>
@@ -554,8 +554,8 @@
                 "author": "Sazon Energy",
                 "ogTitle": "Sazon Energy",
                 "ogDescription": "Sazon Energy is on a mission to support the modern energy transition in the home — the electrification of everything powered by emissions-free energy sources.",
-                "ogUrl": "https://sazon-energy.github.io/",
-                "ogImage": "https://sazon-energy.github.io/og-image.jpg"
+                "ogUrl": "https://sazonenergy.com/",
+                "ogImage": "https://sazonenergy.com/sazonenergia-logo.png"
             },
             "navigation": {
                 "logo": "Sazon Energy",
@@ -580,7 +580,7 @@
                     "<ul><li>Backup the important things - select important appliances, like refrigerators, freezers, internet services, or window air conditioner. (Life-maintaining appliances are not suitable).</li></ul>",
                     "<ul><li>The battery will automatically backup the appliance in case of an outage and help the grid during times of stress - helping to pay for itself.</li></ul>"
                 ],
-                "imagePlaceholder": "",
+                "imagePlaceholder": "Your Image Here"
             },
             "services": {
                 "title": "Our Services",
@@ -607,9 +607,9 @@
             },
             "footer": {
                 "socialLinks": [
-                    { "icon": "📧", "href": "#", "label": "Email" },
+                    { "icon": "📧", "href": "https://airtable.com/appryYWwXfLrpR25X/pagzrUbq9ffmJzgpu/form", "label": "Email" },
                     { "icon": "💼", "href": "#", "label": "LinkedIn" },
-                    { "icon": "🤳🏽", "href": "https://www.instagram.com/sazonenergia/", "label": "Instagram" }
+                    { "icon": "🤳🏽", "href": "https://www.instagram.com/sazonenergy/", "label": "Instagram" }
                 ],
                 "copyright": "© 2025 Sazon Energy. All rights reserved."
             }
@@ -660,8 +660,6 @@
                     learnMoreParagraphs[index].innerHTML = paragraph;
                 }
             });
-            document.querySelector('.learnMore-image::before') && 
-                document.querySelector('.learnMore-image').setAttribute('data-text', siteContent.learnMore.imagePlaceholder);
 
             // Update services section
             document.querySelector('#services .section-title').innerHTML = siteContent.services.title;
@@ -689,8 +687,14 @@
             siteContent.footer.socialLinks.forEach((link, index) => {
                 if (socialLinks[index]) {
                     socialLinks[index].innerHTML = link.icon;
-                    socialLinks[index].setAttribute('href', link.href);
                     socialLinks[index].setAttribute('aria-label', link.label);
+                    socialLinks[index].setAttribute('href', link.href);
+                    
+                    // Add target="_blank" for external links (but not mailto links)
+                    if (link.href.startsWith('http')) {
+                        socialLinks[index].setAttribute('target', '_blank');
+                        socialLinks[index].setAttribute('rel', 'noopener noreferrer');
+                    }
                 }
             });
             document.querySelector('footer p').innerHTML = siteContent.footer.copyright;
